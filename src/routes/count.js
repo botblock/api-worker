@@ -1,13 +1,40 @@
 const listsData = require('../util/getLists')();
 const userAgent = require('../util/userAgent');
 
+const validationError = message => new Response(JSON.stringify({ error: true, status: 400, message }), {
+    status: 400,
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Served-By': 'botblock-api-worker',
+    },
+});
+
+const isInteger = val => typeof val === 'number' && Number.isInteger(val);
+const isSnowflake = val => typeof val === 'string' && /^\d+$/.test(val) && val.length >= 16;
+
 module.exports = {
     method: 'POST',
     route: '/api/count',
-    handler: async ({ request, wait, sentry }) => {
-        const data = await request.json();
+    handler: async ({ request }) => {
+        // Validate the provided data
+        const data = await request.json().catch(() => {});
+        if (!data) return validationError('Body must be JSON object');
 
-        // TODO: Validate data
+        if (!('bot_id' in data)) return validationError('\'bot_id\' is required');
+        if (typeof data.bot_id !== 'string') return validationError('\'bot_id\' must be a string');
+        if (!isSnowflake(data.bot_id)) return validationError('\'bot_id\' must be a snowflake');
+
+        if (!('server_count' in data)) return validationError('\'server_count\' is required');
+        if (typeof data.server_count !== 'number') return validationError('\'server_count\' must be a number');
+        if (!isInteger(data.server_count)) return validationError('\'server_count\' must be a number');
+
+        if ('shard_id' in data && !isInteger(data.shard_id)) return validationError('\'shard_id\' must be a number');
+        if ('shard_count' in data && !isInteger(data.shard_count)) return validationError('\'shard_count\' must be a number');
+
+        if ('shards' in data) {
+            if (!Array.isArray(data.shards)) return validationError('\'shards\' must be an array');
+            if (data.shards.some(n => !isInteger(n))) return validationError('\'shards\' contains incorrect values');
+        }
 
         // Get lists to interact with
         const keys = Object.keys(data);
@@ -52,6 +79,7 @@ module.exports = {
 
         // Done
         return new Response(JSON.stringify(results, null, 2), {
+            status: 200,
             headers: {
                 'Content-Type': 'application/json',
                 'X-Served-By': 'botblock-api-worker',
