@@ -2,6 +2,7 @@ const listsData = require('../util/getLists')();
 const userAgent = require('../util/userAgent');
 const { isInteger, isSnowflake } = require('../util/isType');
 const ratelimit = require('../util/ratelimit');
+const mapLegacy = require('../util/mapLegacy');
 
 const validationError = message => new Response(JSON.stringify({ error: true, status: 400, message }, null, 2), {
     status: 400,
@@ -45,7 +46,7 @@ module.exports = {
         }
 
         // Get lists to interact with
-        const keys = Object.keys(data);
+        const keys = Object.keys(data).map(mapLegacy);
         const lists = listsData.filter(list => keys.includes(list.id) && !!list.api_post && !list.defunct);
 
         // Run all requests concurrently
@@ -63,7 +64,7 @@ module.exports = {
             const timeout = setTimeout(() => controller.abort(), 10000);
 
             // Make the request
-            return fetch(list.api_post, {
+            return fetch(list.api_post.replace(':id', data.bot_id), {
                 method: 'POST',
                 body: JSON.stringify(payload),
                 headers: {
@@ -72,18 +73,28 @@ module.exports = {
                     'User-Agent': request.headers.get('user-agent') || userAgent.random(),
                 },
                 signal,
-            }).then(async resp => {
-                return [ list.id, resp.status, await resp.text(), JSON.stringify(payload) ];
-            }).catch(err => {
-                return [ list.id, -1, err.name === 'AbortError' ? 'Timeout after 10s' : '', JSON.stringify(payload) ];
-            }).finally(() => {
+            }).then(async resp => ({
+                list: list.id,
+                success: resp.ok,
+                data: [ resp.status, await resp.text(), JSON.stringify(payload) ],
+            })).catch(err => ({
+                list: list.id,
+                success: false,
+                data: [ -1, err.name === 'AbortError' ? 'Timeout after 10s' : '', JSON.stringify(payload) ],
+            })).finally(() => {
                 clearTimeout(timeout);
             });
         });
 
         // Wait for all requests to complete
         const results = await Promise.all(requests)
-            .then(data => data.reduce((obj, [ id, ...data ]) => ({ ...obj, [id]: data }), {}));
+            .then(data => data.reduce((obj, { list, success, data }) => ({
+                ...obj,
+                [success ? 'success' : 'failure']: {
+                    ...obj[success ? 'success' : 'failure'],
+                    [list]: data,
+                },
+            }), { success: {}, failure: {} }));
 
         // Done
         return new Response(JSON.stringify(results, null, 2), {
