@@ -30,27 +30,6 @@
         "custom-bot-website-link",
         "discord-bot-support-link",
         "has-categories-or-tags",
-        "has-mobile-support",
-        "bot-resubmission",
-        "bot-reviews",
-        "site-internationalisation-support",
-        "has-ads-on-site",
-        "paid-access",
-        "bot-internationalisation-support",
-        "html-long-description",
-        "iframe-long-description",
-        "certified-bot-vanity-urls",
-        "custom-bot-donate-link",
-        "custom-bot-support-link",
-        "vanity-urls-for-all",
-        "has-voting",
-        "votes-sent-to-webhooks",
-        "voting-data-exposed",
-        "additional-bot-owners-editors",
-        "has-certification-program",
-        "has-search",
-        "has-widget",
-        "requires-owner-in-server",
-        "server-count-api"
+        "has-mobile-support"
     ]
 }

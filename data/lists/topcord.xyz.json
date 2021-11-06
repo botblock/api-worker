@@ -40,17 +40,6 @@
         "has-search",
         "has-widget",
         "requires-owner-in-server",
-        "server-count-api",
-        "bot-reviews",
-        "site-internationalisation-support",
-        "offers-paid-promotion",
-        "paid-access",
-        "bot-internationalisation-support",
-        "custom-bot-donate-link",
-        "custom-bot-github-link",
-        "custom-bot-invite-link",
-        "vanity-urls-for-all",
-        "additional-bot-owners-editors",
-        "has-certification-program"
+        "server-count-api"
     ]
 }

@@ -41,16 +41,6 @@
         "has-mobile-support",
         "has-search",
         "has-widget",
-        "server-count-api",
-        "site-internationalisation-support",
-        "has-ads-on-site",
-        "offers-paid-promotion",
-        "paid-access",
-        "bot-internationalisation-support",
-        "iframe-long-description",
-        "certified-bot-vanity-urls",
-        "custom-bot-donate-link",
-        "custom-bot-support-link",
-        "requires-owner-in-server"
+        "server-count-api"
     ]
 }

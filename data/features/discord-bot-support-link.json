@@ -3,6 +3,5 @@
     "id": "discord-bot-support-link",
     "display": 3,
     "type": 0,
-    "description": "Site has an option to add a discord support link.",
-    "value": 1
+    "description": "Site has an option to add a discord support link."
 }

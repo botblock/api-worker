@@ -44,13 +44,6 @@
         "has-search",
         "has-widget",
         "requires-owner-in-server",
-        "server-count-api",
-        "bot-resubmission",
-        "site-internationalisation-support",
-        "has-ads-on-site",
-        "offers-paid-promotion",
-        "paid-access",
-        "bot-internationalisation-support",
-        "vanity-urls-for-all"
+        "server-count-api"
     ]
 }

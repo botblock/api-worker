@@ -37,20 +37,6 @@
         "has-categories-or-tags",
         "has-mobile-support",
         "has-search",
-        "server-count-api",
-        "bot-reviews",
-        "site-internationalisation-support",
-        "has-ads-on-site",
-        "paid-access",
-        "bot-internationalisation-support",
-        "html-long-description",
-        "iframe-long-description",
-        "custom-bot-donate-link",
-        "vanity-urls-for-all",
-        "voting-data-exposed",
-        "additional-bot-owners-editors",
-        "has-certification-program",
-        "has-widget",
-        "requires-owner-in-server"
+        "server-count-api"
     ]
 }

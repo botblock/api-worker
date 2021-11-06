@@ -3,6 +3,5 @@
     "id": "has-ads-on-site",
     "display": 5,
     "type": 1,
-    "description": "Site displays advertisement.",
-    "value": 1
+    "description": "Site displays advertisement."
 }

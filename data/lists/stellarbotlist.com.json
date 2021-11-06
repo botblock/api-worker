@@ -33,24 +33,6 @@
         "has-categories-or-tags",
         "has-certification-program",
         "has-mobile-support",
-        "requires-owner-in-server",
-        "bot-resubmission",
-        "bot-reviews",
-        "site-internationalisation-support",
-        "has-ads-on-site",
-        "offers-paid-promotion",
-        "paid-access",
-        "bot-internationalisation-support",
-        "markdown-long-description",
-        "certified-bot-vanity-urls",
-        "custom-bot-donate-link",
-        "custom-bot-invite-link",
-        "discord-bot-support-link",
-        "vanity-urls-for-all",
-        "votes-sent-to-webhooks",
-        "voting-data-exposed",
-        "has-search",
-        "has-widget",
-        "server-count-api"
+        "requires-owner-in-server"
     ]
 }

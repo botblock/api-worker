@@ -46,11 +46,6 @@
         "has-search",
         "has-widget",
         "requires-owner-in-server",
-        "server-count-api",
-        "site-internationalisation-support",
-        "paid-access",
-        "bot-internationalisation-support",
-        "vanity-urls-for-all",
-        "voting-data-exposed"
+        "server-count-api"
     ]
 }

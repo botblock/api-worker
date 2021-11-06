@@ -45,12 +45,6 @@
         "has-mobile-support",
         "has-search",
         "requires-owner-in-server",
-        "server-count-api",
-        "bot-resubmission",
-        "paid-access",
-        "bot-internationalisation-support",
-        "vanity-urls-for-all",
-        "has-certification-program",
-        "has-widget"
+        "server-count-api"
     ]
 }

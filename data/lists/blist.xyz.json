@@ -44,13 +44,6 @@
         "has-mobile-support",
         "has-search",
         "requires-owner-in-server",
-        "server-count-api",
-        "site-internationalisation-support",
-        "has-ads-on-site",
-        "paid-access",
-        "vanity-urls-for-all",
-        "voting-data-exposed",
-        "has-certification-program",
-        "has-widget"
+        "server-count-api"
     ]
 }

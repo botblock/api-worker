@@ -3,6 +3,5 @@
     "id": "votes-sent-to-webhooks",
     "display": 2,
     "type": 1,
-    "description": "Site sends votes through Webhooks.",
-    "value": 1
+    "description": "Site sends votes through Webhooks."
 }

@@ -35,22 +35,6 @@
         "has-mobile-support",
         "has-search",
         "has-widget",
-        "server-count-api",
-        "bot-resubmission",
-        "bot-reviews",
-        "site-internationalisation-support",
-        "has-ads-on-site",
-        "offers-paid-promotion",
-        "paid-access",
-        "bot-internationalisation-support",
-        "certified-bot-vanity-urls",
-        "custom-bot-github-link",
-        "custom-bot-support-link",
-        "discord-bot-support-link",
-        "vanity-urls-for-all",
-        "has-voting",
-        "additional-bot-owners-editors",
-        "has-certification-program",
-        "requires-owner-in-server"
+        "server-count-api"
     ]
 }

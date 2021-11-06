@@ -3,6 +3,5 @@
     "id": "server-count-api",
     "display": 0,
     "type": 0,
-    "description": "Site offers an API to post the server count of a bot.",
-    "value": 1
+    "description": "Site offers an API to post the server count of a bot."
 }

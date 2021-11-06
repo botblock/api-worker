@@ -3,6 +3,5 @@
     "id": "requires-owner-in-server",
     "display": 0,
     "type": 1,
-    "description": "Site requires the Bot Owner to be in its Discord Server.",
-    "value": 1
+    "description": "Site requires the Bot Owner to be in its Discord Server."
 }

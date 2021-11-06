@@ -35,22 +35,6 @@
         "has-categories-or-tags",
         "has-search",
         "requires-owner-in-server",
-        "server-count-api",
-        "bot-resubmission",
-        "bot-reviews",
-        "has-ads-on-site",
-        "paid-access",
-        "bot-internationalisation-support",
-        "html-long-description",
-        "iframe-long-description",
-        "certified-bot-vanity-urls",
-        "custom-bot-donate-link",
-        "custom-bot-support-link",
-        "vanity-urls-for-all",
-        "voting-data-exposed",
-        "additional-bot-owners-editors",
-        "has-certification-program",
-        "has-mobile-support",
-        "has-widget"
+        "server-count-api"
     ]
 }

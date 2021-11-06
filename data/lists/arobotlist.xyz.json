@@ -33,24 +33,6 @@
         "has-categories-or-tags",
         "has-mobile-support",
         "has-search",
-        "requires-owner-in-server",
-        "bot-reviews",
-        "has-ads-on-site",
-        "offers-paid-promotion",
-        "paid-access",
-        "bot-internationalisation-support",
-        "iframe-long-description",
-        "custom-bot-donate-link",
-        "custom-bot-github-link",
-        "custom-bot-support-link",
-        "custom-bot-website-link",
-        "discord-bot-support-link",
-        "vanity-urls-for-all",
-        "votes-sent-to-webhooks",
-        "voting-data-exposed",
-        "additional-bot-owners-editors",
-        "has-certification-program",
-        "has-widget",
-        "server-count-api"
+        "requires-owner-in-server"
     ]
 }

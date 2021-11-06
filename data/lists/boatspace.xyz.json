@@ -31,26 +31,6 @@
         "custom-bot-website-link",
         "has-voting",
         "has-certification-program",
-        "has-mobile-support",
-        "bot-resubmission",
-        "bot-reviews",
-        "site-internationalisation-support",
-        "offers-paid-promotion",
-        "paid-access",
-        "bot-internationalisation-support",
-        "iframe-long-description",
-        "custom-bot-donate-link",
-        "custom-bot-github-link",
-        "custom-bot-invite-link",
-        "discord-bot-support-link",
-        "vanity-urls-for-all",
-        "votes-sent-to-webhooks",
-        "voting-data-exposed",
-        "additional-bot-owners-editors",
-        "has-categories-or-tags",
-        "has-search",
-        "has-widget",
-        "requires-owner-in-server",
-        "server-count-api"
+        "has-mobile-support"
     ]
 }
