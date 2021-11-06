@@ -1,5 +1,7 @@
 const listsData = require('../util/getLists')();
 const userAgent = require('../util/userAgent');
+const { isInteger, isSnowflake } = require('../util/isType');
+const ratelimit = require('../util/ratelimit');
 
 const validationError = message => new Response(JSON.stringify({ error: true, status: 400, message }), {
     status: 400,
@@ -9,15 +11,19 @@ const validationError = message => new Response(JSON.stringify({ error: true, st
     },
 });
 
-const isInteger = val => typeof val === 'number' && Number.isInteger(val);
-const isSnowflake = val => typeof val === 'string' && /^\d+$/.test(val) && val.length >= 16;
 
 module.exports = {
     method: 'POST',
     route: '/api/count',
     handler: async ({ request }) => {
-        // Validate the provided data
+        // Get data in request
         const data = await request.json().catch(() => {});
+
+        // Ratelimit request
+        const ratelimited = await ratelimit(120, request, data?.bot_id);
+        if (ratelimited) return ratelimited;
+
+        // Validate the provided data
         if (!data) return validationError('Body must be JSON object');
 
         if (!('bot_id' in data)) return validationError('\'bot_id\' is required');
@@ -61,7 +67,7 @@ module.exports = {
                 headers: {
                     Authorization: data[list.id],
                     'Content-Type': 'application/json',
-                    'User-Agent': request.headers['user-agent'] || userAgent.random(),
+                    'User-Agent': request.headers.get('user-agent') || userAgent.random(),
                 },
                 signal,
             }).then(async resp => {
