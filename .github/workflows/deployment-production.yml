@@ -1,0 +1,89 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    if: false # Ensure prod deploys don't happen for now
+
+    env:
+      NODE_OPTIONS: --unhandled-rejections=strict
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Read .nvmrc
+        run: echo "##[set-output name=NVMRC;]$(cat .nvmrc)"
+        id: nvm
+
+      - name: Use Node.js (.nvmrc)
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ steps.nvm.outputs.NVMRC }}
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Tests
+        run: npm test
+
+  deploy:
+    name: Deploy
+    needs: test
+    runs-on: ubuntu-latest
+
+    if: false # Ensure prod deploys don't happen for now
+
+    env:
+      NODE_OPTIONS: --unhandled-rejections=strict
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Read .nvmrc
+        run: echo "##[set-output name=NVMRC;]$(cat .nvmrc)"
+        id: nvm
+
+      - name: Use Node.js (.nvmrc)
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ steps.nvm.outputs.NVMRC }}
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Generate production.env
+        env:
+          CLIENT_ID: ${{ secrets.PRODUCTION_CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.PRODUCTION_CLIENT_SECRET }}
+          CLIENT_PUBLIC_KEY: ${{ secrets.PRODUCTION_CLIENT_PUBLIC_KEY }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.PRODUCTION_SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.PRODUCTION_SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.PRODUCTION_SENTRY_PROJECT }}
+          SENTRY_DSN: ${{ secrets.PRODUCTION_SENTRY_DSN }}
+        run: envsubst < production.env.sample > production.env
+
+      - name: Publish to Production
+        run: npm run publish:production
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
