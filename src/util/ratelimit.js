@@ -16,8 +16,8 @@ module.exports = async (limit, request, botId = '') => {
         const data = {
             error: true,
             status: 429,
-            retry_after: Math.floor((Number(existing) - Date.now()) / 1000),
-            ratelimit_reset: Math.floor(Number(existing) / 1000),
+            retry_after: Math.ceil((Number(existing) - Date.now()) / 1000),
+            ratelimit_reset: Math.ceil(Number(existing) / 1000),
             ratelimit_method: request.method,
             ratelimit_route: route,
             ratelimit_ip: ip,
