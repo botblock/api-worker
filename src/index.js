@@ -1,18 +1,17 @@
 const WorkersSentry = require('workers-sentry/worker');
-
-// Load all routes with webpack magic
-const routeData = (ctx => ctx.keys().map(ctx))(require.context('./routes', true, /\.js$/));
+const routeData = require('./util/getRoutes')();
 
 // Process all requests to the worker
-const handleRequest = async ({ request }) => {
+const handleRequest = async ({ request, wait, sentry }) => {
     const url = new URL(request.url);
 
     // Attempt to find a matching route
     const route = routeData.find(data => data.method === request.method && data.route === url.pathname);
-    if (route) return route.handler(request);
+    if (route) return route.handler({ request, wait, sentry });
 
-    // Not found
-    return new Response(null, { status: 404 });
+    // Fallback to origin
+    return fetch(request);
+    // return new Response(null, { status: 404 });
 };
 
 // Register the worker listener
