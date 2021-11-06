@@ -23,7 +23,7 @@ module.exports = async (limit, request, botId = '') => {
             ratelimit_ip: ip,
             ratelimit_bot_id: extra,
         };
-        return new Response(JSON.stringify(data), {
+        return new Response(JSON.stringify(data, null, 2), {
             status: 429,
             headers: {
                 'Content-Type': 'application/json',

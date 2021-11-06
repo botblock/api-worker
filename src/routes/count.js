@@ -3,14 +3,13 @@ const userAgent = require('../util/userAgent');
 const { isInteger, isSnowflake } = require('../util/isType');
 const ratelimit = require('../util/ratelimit');
 
-const validationError = message => new Response(JSON.stringify({ error: true, status: 400, message }), {
+const validationError = message => new Response(JSON.stringify({ error: true, status: 400, message }, null, 2), {
     status: 400,
     headers: {
         'Content-Type': 'application/json',
         'X-Served-By': 'botblock-api-worker',
     },
 });
-
 
 module.exports = {
     method: 'POST',
@@ -22,6 +21,9 @@ module.exports = {
         // Ratelimit request
         const ratelimited = await ratelimit(120, request, data?.bot_id);
         if (ratelimited) return ratelimited;
+
+        // For 95% of requests, use origin
+        if (Math.random() < 0.95) return fetch(request);
 
         // Validate the provided data
         if (!data) return validationError('Body must be JSON object');
@@ -90,6 +92,6 @@ module.exports = {
                 'Content-Type': 'application/json',
                 'X-Served-By': 'botblock-api-worker',
             },
-        })
+        });
     },
 };
