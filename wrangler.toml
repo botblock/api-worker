@@ -20,3 +20,11 @@ route = "staging.botblock.org/api/*"
 kv_namespaces = [
     { binding = "RATELIMIT", id = "17c7991d3811406ca22d6329b17792b4" }
 ]
+
+[env.production]
+zone_id = "ccea9c3e6518bf407939c5493a122423"
+workers_dev = false
+route = "botblock.org/api/*"
+kv_namespaces = [
+    { binding = "RATELIMIT", id = "3c44c7d7710c45a2a0ae77379b5801b4" }
+]

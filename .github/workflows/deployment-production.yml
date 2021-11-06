@@ -10,8 +10,6 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
 
-    if: false # Ensure prod deploys don't happen for now
-
     env:
       NODE_OPTIONS: --unhandled-rejections=strict
 
@@ -45,8 +43,6 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
 
-    if: false # Ensure prod deploys don't happen for now
-
     env:
       NODE_OPTIONS: --unhandled-rejections=strict
 
@@ -74,9 +70,6 @@ jobs:
 
       - name: Generate production.env
         env:
-          CLIENT_ID: ${{ secrets.PRODUCTION_CLIENT_ID }}
-          CLIENT_SECRET: ${{ secrets.PRODUCTION_CLIENT_SECRET }}
-          CLIENT_PUBLIC_KEY: ${{ secrets.PRODUCTION_CLIENT_PUBLIC_KEY }}
           SENTRY_AUTH_TOKEN: ${{ secrets.PRODUCTION_SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ secrets.PRODUCTION_SENTRY_ORG }}
           SENTRY_PROJECT: ${{ secrets.PRODUCTION_SENTRY_PROJECT }}
