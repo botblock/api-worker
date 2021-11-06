@@ -23,7 +23,7 @@ module.exports = {
         if (ratelimited) return ratelimited;
 
         // For 95% of requests, use origin
-        if (Math.random() < 0.95) return fetch(request);
+        if (Math.random() < 0.95) return fetch(request, { body: JSON.stringify(data) });
 
         // Validate the provided data
         if (!data) return validationError('Body must be JSON object');
