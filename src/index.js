@@ -1,19 +1,15 @@
 const WorkersSentry = require('workers-sentry/worker');
 
+// Load all routes with webpack magic
+const routeData = (ctx => ctx.keys().map(ctx))(require.context('./routes', true, /\.js$/));
+
 // Process all requests to the worker
 const handleRequest = async ({ request }) => {
     const url = new URL(request.url);
 
-    // Health check route
-    if (request.method === 'GET' && url.pathname === '/health')
-        return new Response('OK', {
-            headers: {
-                'Content-Type': 'text/plain',
-                'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
-                Expires: '0',
-                'Surrogate-Control': 'no-store',
-            },
-        });
+    // Attempt to find a matching route
+    const route = routeData.find(data => data.method === request.method && data.route === url.pathname);
+    if (route) return route.handler(request);
 
     // Not found
     return new Response(null, { status: 404 });

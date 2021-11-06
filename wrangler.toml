@@ -10,3 +10,7 @@ command = "npm run build"
 [build.upload]
 format = "service-worker"
 
+[env.staging]
+zone_id = "ccea9c3e6518bf407939c5493a122423"
+workers_dev = false
+route = "staging.botblock.org/api/*"
