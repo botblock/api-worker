@@ -1,0 +1,38 @@
+{
+  "name": "api-worker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/worker.js",
+  "scripts": {
+    "build": "webpack",
+    "dev": "NODE_ENV=development wrangler dev",
+    "publish:production": "NODE_ENV=production wrangler publish -e production",
+    "publish:staging": "NODE_ENV=staging wrangler publish -e staging",
+    "logs:production": "wrangler tail -e production",
+    "logs:staging": "wrangler tail -e staging",
+    "lint": "eslint \"{src/**/*,*}.js\"",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/botblock/api-worker.git"
+  },
+  "keywords": [],
+  "author": "Matt (IPv4) Cowley",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/botblock/api-worker/issues"
+  },
+  "homepage": "https://github.com/botblock/api-worker#readme",
+  "dependencies": {
+    "workers-sentry": "^0.0.6"
+  },
+  "devDependencies": {
+    "@cloudflare/wrangler": "^1.19.4",
+    "dotenv": "^10.0.0",
+    "eslint": "^8.2.0",
+    "webpack": "^5.62.1",
+    "webpack-cli": "^4.9.1"
+  }
+}

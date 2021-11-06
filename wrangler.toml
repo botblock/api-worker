@@ -1,0 +1,12 @@
+name = "botblock-api-worker"
+type = "javascript"
+account_id = "fb1f542488f2441acf88ca15f3a8390d"
+workers_dev = true
+compatibility_date = "2021-10-17"
+
+[build]
+command = "npm run build"
+
+[build.upload]
+format = "service-worker"
+
