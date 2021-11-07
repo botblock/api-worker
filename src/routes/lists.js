@@ -1,15 +1,10 @@
 const listsData = require('../util/getLists')();
-const ratelimit = require('../util/ratelimit');
 const getList = require('../util/getList');
 
 module.exports = {
     method: 'GET',
     route: '/api/lists',
     handler: async ({ request }) => {
-        // Ratelimit request
-        const ratelimited = await ratelimit(1, request);
-        if (ratelimited) return ratelimited;
-
         // For 75% of requests, use origin
         if (Math.random() < 0.75) return fetch(request);
 

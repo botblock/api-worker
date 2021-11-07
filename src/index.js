@@ -1,4 +1,5 @@
 const WorkersSentry = require('workers-sentry/worker');
+const UrlPattern = require('url-pattern');
 const routeData = require('./util/getRoutes')();
 
 // Process all requests to the worker
@@ -6,8 +7,15 @@ const handleRequest = async ({ request, wait, sentry }) => {
     const url = new URL(request.url);
 
     // Attempt to find a matching route
-    const route = routeData.find(data => data.method === request.method && data.route === url.pathname);
-    if (route) return route.handler({ request, wait, sentry });
+    for (const route of routeData) {
+        if (route.method !== request.method) continue;
+        const match = new UrlPattern(route.route, { segmentValueCharset: 'a-zA-Z0-9-_~ %.' }).match(url.pathname);
+        if (!match) continue;
+
+        // Execute the route
+        request.params = match;
+        return route.handler({ request, wait, sentry });
+    }
 
     // Fallback to origin
     return fetch(request);

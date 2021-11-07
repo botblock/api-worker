@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/botblock/api-worker#readme",
   "dependencies": {
+    "url-pattern": "^1.0.3",
     "workers-sentry": "^0.0.6"
   },
   "devDependencies": {
