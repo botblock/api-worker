@@ -19,10 +19,6 @@ module.exports = {
         // Get data in request
         const data = await request.json().catch(() => {});
 
-        // Ratelimit request
-        const ratelimited = await ratelimit(120, request, data?.bot_id);
-        if (ratelimited) return ratelimited;
-
         // Validate the provided data
         if (!data) return validationError('Body must be JSON object');
 
@@ -41,6 +37,10 @@ module.exports = {
             if (!Array.isArray(data.shards)) return validationError('\'shards\' must be an array');
             if (data.shards.some(n => !isInteger(n))) return validationError('\'shards\' contains incorrect values');
         }
+
+        // Ratelimit request
+        const ratelimited = await ratelimit(120, request, data.bot_id);
+        if (ratelimited) return ratelimited;
 
         // Get lists to interact with
         const keys = Object.keys(data).map(mapLegacy);
