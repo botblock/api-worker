@@ -1,9 +1,9 @@
-const getList = require('../util/getList');
+const getList = require('../../util/getList');
 
 module.exports = {
     method: 'GET',
     route: '/api/lists/:id',
-    handler: async ({ request }) => {
+    handler: ({ request }) => {
         // Attempt to get the list
         const list = getList(request.params.id);
         if (list) return new Response(JSON.stringify(list, null, 2), {
