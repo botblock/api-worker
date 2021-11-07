@@ -1,3 +1,3 @@
-const legacy = require('../../data/legacy.json');
+const legacy = require('../../data/data/legacy.json');
 
 module.exports = val => legacy[val] || val;

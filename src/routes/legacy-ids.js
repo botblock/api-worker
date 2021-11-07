@@ -1,4 +1,4 @@
-const legacy = require('../../data/legacy.json');
+const legacy = require('../../data/data/legacy.json');
 
 module.exports = {
     method: 'GET',

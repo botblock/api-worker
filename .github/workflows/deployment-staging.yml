@@ -76,6 +76,9 @@ jobs:
           SENTRY_DSN: ${{ secrets.STAGING_SENTRY_DSN }}
         run: envsubst < staging.env.sample > staging.env
 
+      - name: Fetch data
+        run: git clone https://github.com/botblock/data
+
       - name: Publish to Staging
         run: npm run publish:staging
         env:

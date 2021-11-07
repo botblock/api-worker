@@ -76,6 +76,9 @@ jobs:
           SENTRY_DSN: ${{ secrets.PRODUCTION_SENTRY_DSN }}
         run: envsubst < production.env.sample > production.env
 
+      - name: Fetch data
+        run: git clone https://github.com/botblock/data
+
       - name: Publish to Production
         run: npm run publish:production
         env:

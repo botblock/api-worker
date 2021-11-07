@@ -1,7 +1,0 @@
-{
-    "name": "Bot Resubmission",
-    "id": "bot-resubmission",
-    "display": 69,
-    "type": 0,
-    "description": "Bot data is stored when they are denied/deleted and can be easily resubmitted by the owner."
-}

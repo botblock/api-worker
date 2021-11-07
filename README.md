@@ -11,7 +11,8 @@ Read the API docs at <https://botblock.org/api/docs>.
 3. Update `wrangler.toml` for your account.
     - Use `wrangler whoami` to get your account ID, update the value in `wrangler.toml` to match.
     - Use `wrangler kv:namespace create "RATELIMIT"` to create the KV namespace, update the `id` and `preview_id` in `wrangler.toml` to match.
-4. Develop with the worker by running `npm run dev`.
+4. Clone a copy of BotBlock's open data with `git clone https://github.com/botblock/data`.
+5. Develop with the worker by running `npm run dev`.
 
 ## Deployments
 
