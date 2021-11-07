@@ -2,8 +2,11 @@ const listsData = require('../util/getLists')();
 const featuresData = require('../util/getFeatures')();
 
 module.exports = id => {
-    const list = listsData.find(list => list.id === id);
-    if (!list) return null;
+    const match = listsData.find(list => list.id === id);
+    if (!match) return null;
+
+    // Clone the object
+    const list = { ...match };
 
     // Load full features
     list.features = featuresData.map(feature => ({
