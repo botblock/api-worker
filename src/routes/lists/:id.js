@@ -17,9 +17,9 @@ module.exports = {
         // Not found
         return new Response(JSON.stringify({ error: true, status: 404, message: 'List not found' }, null, 2), {
             status: 404,
-                headers: {
+            headers: {
                 'Content-Type': 'application/json',
-                    'X-Served-By': 'botblock-api-worker',
+                'X-Served-By': 'botblock-api-worker',
             },
         });
     },

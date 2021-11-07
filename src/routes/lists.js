@@ -29,7 +29,7 @@ module.exports = {
                     ? Object.entries(list).reduce((obj, [ key, val ]) => key.startsWith('api_')
                         ? { ...obj, [key]: val }
                         : obj,
-                        {})
+                    {})
                     : list,
             }), {});
 
