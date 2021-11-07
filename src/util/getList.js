@@ -1,5 +1,5 @@
-const listsData = require('../util/getLists')();
-const featuresData = require('../util/getFeatures')();
+const listsData = require('./getLists')();
+const featuresData = require('./getFeatures')();
 
 module.exports = id => {
     const match = listsData.find(list => list.id === id);
