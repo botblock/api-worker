@@ -5,9 +5,6 @@ module.exports = {
     method: 'GET',
     route: '/api/lists',
     handler: async ({ request }) => {
-        // For 75% of requests, use origin
-        if (Math.random() < 0.75) return fetch(request);
-
         // Get lists with features
         const lists = listsData.map(list => getList(list.id)).sort((a, b) => {
             if (a.discord_only !== b.discord_only) return a.discord_only ? -1 : 1;

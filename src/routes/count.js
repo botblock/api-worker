@@ -23,9 +23,6 @@ module.exports = {
         const ratelimited = await ratelimit(120, request, data?.bot_id);
         if (ratelimited) return ratelimited;
 
-        // For 75% of requests, use origin
-        if (Math.random() < 0.75) return fetch(request, { body: JSON.stringify(data) });
-
         // Validate the provided data
         if (!data) return validationError('Body must be JSON object');
 
