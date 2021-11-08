@@ -4,9 +4,6 @@ const routeData = require('./util/getRoutes')();
 
 // Process all requests to the worker
 const handleRequest = async ({ request, wait, sentry }) => {
-    // For 25% of requests, use origin
-    if (Math.random() < 0.25) return fetch(request);
-
     const url = new URL(request.url);
 
     // Attempt to find a matching route
