@@ -30,12 +30,16 @@ module.exports = {
         if (typeof data.server_count !== 'number') return validationError('\'server_count\' must be a number');
         if (!isInteger(data.server_count)) return validationError('\'server_count\' must be a number');
 
-        if ('shard_id' in data && !isInteger(data.shard_id)) return validationError('\'shard_id\' must be a number');
-        if ('shard_count' in data && !isInteger(data.shard_count)) return validationError('\'shard_count\' must be a number');
+        if ('shard_id' in data && (!isInteger(data.shard_id) && data.shard_id !== null))
+            return validationError('\'shard_id\' must be a number or null');
+        if ('shard_count' in data && (!isInteger(data.shard_count) && data.shard_count !== null))
+            return validationError('\'shard_count\' must be a number or null');
 
         if ('shards' in data) {
-            if (!Array.isArray(data.shards)) return validationError('\'shards\' must be an array');
-            if (data.shards.some(n => !isInteger(n))) return validationError('\'shards\' contains incorrect values');
+            if (!Array.isArray(data.shards) && data.shards !== null)
+                return validationError('\'shards\' must be an array or null');
+            if (data.shards && data.shards.some(n => !isInteger(n)))
+                return validationError('\'shards\' contains incorrect values');
         }
 
         // Ratelimit request
