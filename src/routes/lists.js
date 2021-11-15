@@ -20,7 +20,7 @@ module.exports = {
             })
             .sort((a, b) => {
                 if (a.discord_only !== b.discord_only) return a.discord_only ? -1 : 1;
-                return a.id.localeCompare(b.id) ? 1 : -1;
+                return a.id.localeCompare(b.id) > 0 ? 1 : -1;
             })
             .reduce((obj, list) => ({
                 ...obj,
