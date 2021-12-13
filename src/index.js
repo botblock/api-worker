@@ -17,9 +17,20 @@ const handleRequest = async ({ request, wait, sentry }) => {
         return route.handler({ request, wait, sentry });
     }
 
-    // Fallback to origin
-    return fetch(request);
-    // return new Response(null, { status: 404 });
+    // Handle docs redirects
+    if (request.method === 'GET' && url.pathname === '/api/docs')
+        return new Response(null, {
+            status: 302,
+            headers: { Location: '/docs' },
+        });
+    if (request.method === 'GET' && url.pathname === '/api/docs/libs')
+        return new Response(null, {
+            status: 302,
+            headers: { Location: '/docs/libraries' },
+        });
+
+    // 404 response
+    return new Response(null, { status: 404 });
 };
 
 // Register the worker listener
