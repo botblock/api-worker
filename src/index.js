@@ -5,6 +5,7 @@ const routeData = require('./util/getRoutes')();
 // Process all requests to the worker
 const handleRequest = async ({ request, wait, sentry }) => {
     const url = new URL(request.url);
+    url.pathname = url.pathname.replace(/(?<=.)\/$/, '');
 
     // Attempt to find a matching route
     for (const route of routeData) {
