@@ -2,7 +2,7 @@
 
 The Cloudflare Worker that powers the BotBlock.org API routes.
 
-Read the API docs at <https://botblock.org/api/docs>.
+Read the API docs at <https://botblock.org/docs>.
 
 ## Development
 
