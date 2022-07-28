@@ -66,7 +66,7 @@ module.exports = {
 
             // Make the request
             return fetch(list.api_post.replace(':id', data.bot_id), {
-                method: 'POST',
+                method: list.api_post_method ?? 'POST',
                 body: JSON.stringify(payload),
                 headers: {
                     Authorization: data[list.id],
