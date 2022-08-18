@@ -10,12 +10,14 @@ module.exports = id => {
 
     // Load full features
     list.features = featuresData.map(feature => {
-        delete feature['$schema'];
-
-        return {
+        const withValue = {
             ...feature,
             value: list.features.includes(feature.id) ? 1 : 0,
         };
+        
+        delete withValue['$schema'];
+        
+        return withValue;
     }).sort((a, b) => {
         if (a.value !== b.value) return a.value ? -1 : 1;
         if (a.display !== b.display) return a.display > b.display ? -1 : 1;
