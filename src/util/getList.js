@@ -14,9 +14,9 @@ module.exports = id => {
             ...feature,
             value: list.features.includes(feature.id) ? 1 : 0,
         };
-        
+
         delete withValue['$schema'];
-        
+
         return withValue;
     }).sort((a, b) => {
         if (a.value !== b.value) return a.value ? -1 : 1;
