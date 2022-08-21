@@ -6,6 +6,7 @@ module.exports = {
     handler: () => {
         // Get legacy IDs and sort
         const map = Object.entries(legacy)
+            .filter((k) => k[0] !== '$schema')
             .sort((a, b) => a[0].localeCompare(b[0]) ? -1 : 1)
             .reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {});
 
