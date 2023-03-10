@@ -77,7 +77,7 @@ module.exports = {
             }).then(async resp => ({
                 list: list.id,
                 success: resp.ok,
-                data: [ resp.status, await resp.text(), JSON.stringify(payload) ],
+                data: [ resp.status, resp.status != 204 ? (await resp.text()) : "Success", JSON.stringify(payload) ],
             })).catch(err => ({
                 list: list.id,
                 success: false,
