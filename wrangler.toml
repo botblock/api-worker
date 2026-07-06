@@ -1,5 +1,5 @@
 name = "botblock-api-worker"
-type = "javascript"
+main = "dist/worker.js"
 account_id = "fb1f542488f2441acf88ca15f3a8390d"
 workers_dev = true
 compatibility_date = "2021-10-17"
@@ -10,11 +10,7 @@ kv_namespaces = [
 [build]
 command = "npm run build"
 
-[build.upload]
-format = "service-worker"
-
 [env.staging]
-zone_id = "ccea9c3e6518bf407939c5493a122423"
 workers_dev = false
 route = "staging.botblock.org/api/*"
 kv_namespaces = [
@@ -22,7 +18,6 @@ kv_namespaces = [
 ]
 
 [env.production]
-zone_id = "ccea9c3e6518bf407939c5493a122423"
 workers_dev = false
 route = "botblock.org/api/*"
 kv_namespaces = [

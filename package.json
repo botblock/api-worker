@@ -6,8 +6,8 @@
   "scripts": {
     "build": "webpack",
     "dev": "NODE_ENV=development wrangler dev",
-    "publish:production": "NODE_ENV=production wrangler publish -e production",
-    "publish:staging": "NODE_ENV=staging wrangler publish -e staging",
+    "publish:production": "NODE_ENV=production wrangler deploy -e production",
+    "publish:staging": "NODE_ENV=staging wrangler deploy -e staging",
     "logs:production": "wrangler tail -e production",
     "logs:staging": "wrangler tail -e staging",
     "lint": "eslint \"{src/**/*,*}.js\"",
@@ -30,10 +30,10 @@
     "workers-sentry": "^0.0.6"
   },
   "devDependencies": {
-    "@cloudflare/wrangler": "^1.19.4",
     "dotenv": "^10.0.0",
     "eslint": "^8.2.0",
     "webpack": "^5.62.1",
-    "webpack-cli": "^4.9.1"
+    "webpack-cli": "^4.9.1",
+    "wrangler": "^4.107.0"
   }
 }
