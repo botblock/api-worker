@@ -63,4 +63,4 @@ jobs:
       - name: Publish to Production
         run: npm run publish:production
         env:
-          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
